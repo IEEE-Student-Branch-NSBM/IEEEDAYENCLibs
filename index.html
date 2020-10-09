@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <meta name="Author" content="SrilalS">
+    <title>IEEE NSBM Student Branch</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i">
+</head>
+
+<body class="bg-gradient-primary">
+<div class="container">
+    <div class="card shadow-lg o-hidden border-0 my-5">
+        <div class="card-body p-0">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h4 class="text-dark mb-4">BASE64 Decode</h4>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control form-control-lg form-control-user" type="text" id="BASE64INPUT" multiple="">
+                        </div>
+                        <button class="btn btn-primary btn-block text-white btn-user" onclick="base64decrypt();" type="button">DECODE</button>
+
+                    </div>
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h4 class="text-dark mb-4">AES256 Decrypt</h4>
+                        </div>
+
+                            <div class="form-group">
+                                <input class="form-control form-control-user" type="text" id="EAES256INPUT" placeholder="Encrypted Text">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control form-control-user" type="text" id="EAES256KEYINPUT" placeholder="Decryption key">
+                            </div>
+                        <p id="DecryptedTEXT"></p>
+                        <button onclick="decrypt();" class="btn btn-primary btn-block text-white btn-user" type="button">EnCrypt</button>
+
+                    </div>
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h4 class="text-dark mb-4">AES256 Encrypt</h4>
+                        </div>
+
+                        <div class="form-group">
+                            <input class="form-control form-control-user" type="text" id="AES256INPUT" placeholder="Encrypted Text">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control form-control-user" type="text" id="AES256KEYINPUT" placeholder="Decryption key">
+                        </div>
+                        <p id="EncryptedTEXT"></p>
+                        <button onclick="encrypt();" class="btn btn-primary btn-block text-white btn-user" type="button">DeCrypt</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
+<script src="assets/js/script.min.js"></script>
+
+<script type="text/javascript">
+
+    let aes256input = document.getElementById('AES256INPUT');
+    let aes256keyinput = document.getElementById('AES256KEYINPUT');
+
+    let eaes256input = document.getElementById('EAES256INPUT');
+    let eaes256keyinput = document.getElementById('EAES256KEYINPUT');
+
+    let DecryptedTEXT = document.getElementById('DecryptedTEXT');
+    let EncryptedTEXT = document.getElementById('EncryptedTEXT');
+
+    let base64input = document.getElementById('BASE64INPUT');
+
+    function base64decrypt(){
+        let val = base64input.value;
+        base64input.value = atob(val);
+        console.log(atob(val))
+    }
+
+
+
+    function encrypt(){
+        console.log('Encrypting...')
+        var encrypted = CryptoJS.AES.encrypt(aes256input.value, aes256keyinput.value);
+        EncryptedTEXT.innerHTML = encrypted;
+    }
+
+    function decrypt(){
+        console.log('Decrypting...')
+        var decrypted = CryptoJS.AES.decrypt(eaes256input.value, eaes256keyinput.value).toString(CryptoJS.enc.Utf8);
+        DecryptedTEXT.innerHTML = decrypted;
+        console.log(decrypted);
+    }
+
+
+
+
+</script>
+</body>
+</html>
